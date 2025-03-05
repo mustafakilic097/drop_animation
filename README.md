@@ -1,7 +1,7 @@
-```markdown
 # Drop Animation
 
 A simple Flutter package that provides a drop animation widget to create beautiful water drop effects in your Flutter applications.
+![832738ac-2714-4c08-9b0d-a5339b27c3a3](https://github.com/user-attachments/assets/f3c495a3-3a73-418d-a3ad-587b8b72662c)
 
 ## Features
 
@@ -80,4 +80,3 @@ For a more complete example, check the `/example` folder included in the package
 
 - **License:**  
   This package is released under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
