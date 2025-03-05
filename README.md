@@ -1,26 +1,83 @@
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+```markdown
+# Drop Animation
+
+A simple Flutter package that provides a drop animation widget to create beautiful water drop effects in your Flutter applications.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Animated Drop Effect:** Simulate a falling drop with a smooth splash effect.
+- **Customizable:** Easily adjust the drop's size, color, fall height, and animation duration.
+- **Dynamic Interaction:** Trigger new drops dynamically via a global method.
+- **Easy Integration:** Designed for quick integration into your existing Flutter projects.
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. **Add Dependency:**  
+   Add `drop_animation` to your project's `pubspec.yaml` file:
+
+   ```yaml
+   dependencies:
+     drop_animation: ^0.0.1
+   ```
+
+2. **Install the Package:**  
+   Run the following command in your terminal:
+   
+   ```bash
+   flutter pub get
+   ```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import the package in your Dart file and use the `DropAnimationScreen` widget. For example:
 
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:my_drop_animation/drop_animation.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Drop Animation Demo',
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Drop Animation Demo')),
+        body: Center(
+          child: Column(
+            children: [
+              Expanded(child: DropAnimationScreen()),
+              ElevatedButton(
+                onPressed: () {
+                  // Trigger a new drop animation.
+                  DropAnimationScreen.triggerAddDrop();
+                },
+                child: const Text('Add Drop'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 ```
 
-## Additional information
+For a more complete example, check the `/example` folder included in the package.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Additional Information
+
+- **Repository:**  
+  For more details, to contribute, or to file issues, please visit the [GitHub repository](https://github.com/mustafakilic097/drop_animation.git).
+
+- **Contributing:**  
+  Contributions are welcome! Feel free to open issues or submit pull requests with improvements.
+
+- **License:**  
+  This package is released under the MIT License. See the [LICENSE](LICENSE) file for details.
+```
