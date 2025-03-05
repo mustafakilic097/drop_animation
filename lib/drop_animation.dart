@@ -20,7 +20,8 @@ class DropAnimationScreen extends StatefulWidget {
   final Color dropColor;
 
   /// A global key to provide external access to the widget's state.
-  static final GlobalKey<_DropAnimationScreenState> globalKey = GlobalKey<_DropAnimationScreenState>();
+  static final GlobalKey<DropAnimationScreenState> globalKey =
+      GlobalKey<DropAnimationScreenState>();
 
   /// Creates a [DropAnimationScreen].
   ///
@@ -39,10 +40,11 @@ class DropAnimationScreen extends StatefulWidget {
   }
 
   @override
-  State<DropAnimationScreen> createState() => _DropAnimationScreenState();
+  State<DropAnimationScreen> createState() => DropAnimationScreenState();
 }
 
-class _DropAnimationScreenState extends State<DropAnimationScreen> {
+/// Public state class to control the drop animation.
+class DropAnimationScreenState extends State<DropAnimationScreen> {
   final List<int> dropIds = [];
   int dropCounter = 0;
 
@@ -122,7 +124,8 @@ class AnimatedDrop extends StatefulWidget {
   State<AnimatedDrop> createState() => _AnimatedDropState();
 }
 
-class _AnimatedDropState extends State<AnimatedDrop> with SingleTickerProviderStateMixin {
+class _AnimatedDropState extends State<AnimatedDrop>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _positionAnimation;
   late final Animation<double> _stretchAnimation;
@@ -133,32 +136,48 @@ class _AnimatedDropState extends State<AnimatedDrop> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.dropDuration);
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.dropDuration,
+    );
 
     _positionAnimation = Tween<double>(
       begin: 0,
       end: widget.dropHeight,
-    ).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.7, curve: Curves.easeIn)));
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.7, curve: Curves.easeIn),
+      ),
+    );
 
-    _stretchAnimation = Tween<double>(
-      begin: 1.0,
-      end: 1.5,
-    ).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.7, curve: Curves.easeOut)));
+    _stretchAnimation = Tween<double>(begin: 1.0, end: 1.5).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.7, curve: Curves.easeOut),
+      ),
+    );
 
-    _splashScaleXAnimation = Tween<double>(
-      begin: 1.0,
-      end: 2.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.7, 1.0, curve: Curves.elasticOut)));
+    _splashScaleXAnimation = Tween<double>(begin: 1.0, end: 2.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.7, 1.0, curve: Curves.elasticOut),
+      ),
+    );
 
-    _splashScaleYAnimation = Tween<double>(
-      begin: 1.5,
-      end: 0.5,
-    ).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.7, 1.0, curve: Curves.easeOut)));
+    _splashScaleYAnimation = Tween<double>(begin: 1.5, end: 0.5).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.7, 1.0, curve: Curves.easeOut),
+      ),
+    );
 
-    _opacityAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.7, 1.0, curve: Curves.easeIn)));
+    _opacityAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.7, 1.0, curve: Curves.easeIn),
+      ),
+    );
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -203,7 +222,10 @@ class _AnimatedDropState extends State<AnimatedDrop> with SingleTickerProviderSt
             child: Transform.scale(
               scaleX: scaleX,
               scaleY: scaleY,
-              child: CustomPaint(size: widget.size, painter: DropPainter(dropColor: widget.dropColor)),
+              child: CustomPaint(
+                size: widget.size,
+                painter: DropPainter(dropColor: widget.dropColor),
+              ),
             ),
           ),
         );

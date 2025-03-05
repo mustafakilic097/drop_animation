@@ -1,6 +1,6 @@
 name: drop_animation
 description: "Drop Animation is a simple Flutter package that adds customizable drop animations to your app."
-version: 0.0.2
+version: 0.0.3
 homepage: "https://github.com/mustafakilic097/drop_animation.git"
 repository: "https://github.com/mustafakilic097/drop_animation.git"
 
@@ -15,6 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
