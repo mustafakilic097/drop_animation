@@ -19,6 +19,9 @@ class DropAnimationScreen extends StatefulWidget {
   /// The color of the drop.
   final Color dropColor;
 
+  /// If true, the widget is embedded in a fixed size container and does not return a Scaffold.
+  final bool embedded;
+
   /// A global key to provide external access to the widget's state.
   static final GlobalKey<DropAnimationScreenState> globalKey =
       GlobalKey<DropAnimationScreenState>();
@@ -32,7 +35,8 @@ class DropAnimationScreen extends StatefulWidget {
     this.dropHeight = 300,
     this.dropDuration = const Duration(milliseconds: 2000),
     this.dropColor = Colors.blue,
-  }) : super(key: globalKey);
+    this.embedded = false,
+  }) : super(key: key ?? globalKey);
 
   /// Static method to trigger the addition of a new drop.
   static void triggerAddDrop() {
@@ -67,29 +71,29 @@ class DropAnimationScreenState extends State<DropAnimationScreen> {
     final double containerHeight = widget.dropHeight + widget.dropSize.height;
     const double containerWidth = 200;
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: SizedBox(
-          width: containerWidth,
-          height: containerHeight,
-          child: Stack(
-            children: [
-              // Each drop is represented by an AnimatedDrop widget with a unique id.
-              for (int id in dropIds)
-                AnimatedDrop(
-                  key: ValueKey(id),
-                  size: widget.dropSize,
-                  dropHeight: widget.dropHeight,
-                  dropDuration: widget.dropDuration,
-                  dropColor: widget.dropColor,
-                  onCompleted: () => _removeDrop(id),
-                ),
-            ],
-          ),
+    final content = Center(
+      child: SizedBox(
+        width: containerWidth,
+        height: containerHeight,
+        child: Stack(
+          children: [
+            // Each drop is represented by an AnimatedDrop widget with a unique id.
+            for (int id in dropIds)
+              AnimatedDrop(
+                key: ValueKey(id),
+                size: widget.dropSize,
+                dropHeight: widget.dropHeight,
+                dropDuration: widget.dropDuration,
+                dropColor: widget.dropColor,
+                onCompleted: () => _removeDrop(id),
+              ),
+          ],
         ),
       ),
     );
+
+    if (widget.embedded) return content;
+    return Scaffold(backgroundColor: Colors.transparent, body: content);
   }
 }
 

@@ -17,7 +17,7 @@ A simple Flutter package that provides a drop animation widget to create beautif
 
    ```yaml
    dependencies:
-     drop_animation: ^0.0.1
+     drop_animation: ^0.0.4
    ```
 
 2. **Install the Package:**  
